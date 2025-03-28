@@ -9,3 +9,16 @@ mongoose.connect(process.env.MONGO_URI)
     );
   })
   .catch(err => console.error(err));
+
+const cors = require('cors');
+
+// Allow your Vercel frontend
+const allowedOrigins = [
+  'https://job-frontend-beige.vercel.app', // frontend URL
+  'http://localhost:3000' // for local url
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
