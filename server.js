@@ -3,15 +3,10 @@ const mongoose = require('mongoose');
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ MongoDB connected');
 
-    // ✅ Import the app *AFTER* connection is confirmed
-    const app = require('./app');
+    const app = require('./app'); // ✅ Safe now
     const PORT = process.env.PORT || 5000;
 
     app.listen(PORT, () => {
@@ -24,17 +19,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-
-const cors = require('cors');
-
-// Allow your Vercel frontend
-const allowedOrigins = [
-  'https://job-frontend-beige.vercel.app', // frontend URL
-  'http://localhost:3000' // for local url
-];
-
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
