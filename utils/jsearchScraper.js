@@ -3,9 +3,11 @@ const axios = require('axios');
 const mongoose = require('mongoose');
 const Job = require('../models/Job');
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ Connected to MongoDB'))
-  .catch(err => console.error('MongoDB error:', err));
+if (process.env.NODE_ENV !== 'production') {
+  mongoose.connect(process.env.MONGO_URI)
+      .then(() => console.log('✅ Connected to MongoDB'))
+      .catch(err => console.error('MongoDB error:', err));
+}
 
 const extractSkillsFromText = (text) => {
   const SKILLS = ['JavaScript', 'React', 'Node.js', 'Python', 'Java', 'AWS', 'SQL', 'Django', 'MongoDB', 'C++', 'Vue'];
