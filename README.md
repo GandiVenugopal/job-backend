@@ -71,10 +71,15 @@ Live Demo
 
 API Routes
 Endpoint	Method	Description
+
 /api/auth/register	POST	Register a new user
+
 /api/auth/login	POST	Log in and get JWT token
+
 /api/upload/resume	POST	Upload resume and extract skills
+
 /api/jobs/recommendations	GET	Get job recommendations
+
 /api/jobs/seed (dev/test only)	POST	Seed jobs into DB
 
 
